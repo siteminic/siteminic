@@ -27,4 +27,9 @@ class Page
     {
         return $this->attributes;
     }
+
+    public function attribute(string $key, $default = null): mixed
+    {
+        return $this->attributes[$key] ?? $default;
+    }
 }
