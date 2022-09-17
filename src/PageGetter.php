@@ -12,7 +12,7 @@ use Siteminic\Criteria\FilterOperator;
 /**
  * Service to retrieve page or pages
  */
-class PageGetter
+class PageGetter implements PageGetterInterface
 {
     public function __construct(
         private PageRepositoryInterface $repository,
