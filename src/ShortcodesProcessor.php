@@ -8,7 +8,7 @@ use Thunder\Shortcode\HandlerContainer\HandlerContainer;
 use Thunder\Shortcode\Parser\RegularParser;
 use Thunder\Shortcode\Processor\Processor;
 
-class ShortcodeProcessor
+class ShortcodesProcessor implements PageProcessorInterface
 {
     private $shortcodes;
 
@@ -17,7 +17,7 @@ class ShortcodeProcessor
         $this->shortcodes = $shortcodes;
     }
 
-    public function process(string $content): string
+    public function handle(Page $page): Page
     {
         $unscappedText = preg_replace_callback(
                 '/\[(.*?)\]/',
@@ -28,7 +28,7 @@ class ShortcodeProcessor
 
                     return $text;
                 },
-            $content);
+            $page->content());
 
         $handlers = new HandlerContainer();
 
@@ -44,7 +44,12 @@ class ShortcodeProcessor
         }
 
         $processor = new Processor(new RegularParser(), $handlers);
+        $content = $processor->process($unscappedText);
 
-        return $processor->process($unscappedText);
+        return new Page(
+            $page->path(),
+            $content,
+            $page->attributes()
+        );
     }
 }
