@@ -34,7 +34,7 @@ class PageGetter implements PageGetterInterface
                         false
                     ),
                     new Filter(
-                        'publishedAt',
+                        'published_at',
                         FilterOperator::GT,
                         new DateTimeImmutable('now')
                     )
@@ -65,7 +65,7 @@ class PageGetter implements PageGetterInterface
                         false
                     ),
                     new Filter(
-                        'publishedAt',
+                        'published_at',
                         FilterOperator::GT,
                         new DateTimeImmutable('now')
                     )

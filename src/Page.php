@@ -30,6 +30,10 @@ class Page
 
     public function attribute(string $key, $default = null): mixed
     {
+        if ('path' === $key) {
+            return $this->path();
+        }
+
         return $this->attributes[$key] ?? $default;
     }
 }
