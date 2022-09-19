@@ -56,7 +56,7 @@ class PageGetter implements PageGetterInterface
                 [
                     new Filter(
                         'collections',
-                        FilterOperator::EQUAL,
+                        FilterOperator::CONTAINS,
                         $name
                     ),
                     new Filter(
