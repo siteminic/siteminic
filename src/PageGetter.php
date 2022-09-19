@@ -49,7 +49,7 @@ class PageGetter implements PageGetterInterface
         return $page;
     }
 
-    public function listByCollection(string $name): array
+    public function listByCollection(string $name, ?array $orders = [], ?int $offset = null, ?int $limit = null): array
     {
         return $this->repository->findBy(
             new Criteria(
@@ -69,7 +69,10 @@ class PageGetter implements PageGetterInterface
                         FilterOperator::GT,
                         new DateTimeImmutable('now')
                     )
-                ]
+                ],
+                $orders,
+                $offset,
+                $limit
             )
         );
     }
