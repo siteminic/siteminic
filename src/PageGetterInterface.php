@@ -2,8 +2,6 @@
 
 namespace Siteminic;
 
-use Siteminic\Criteria\Order;
-
 interface PageGetterInterface
 {
     public function getByPath(?string $path = null): ?Page;
